@@ -96,7 +96,7 @@ Ensure you have the following installed on your machine:
 #### Create the posts table
 
 <details>
- <summary><code>GET</code> <code><b>/create-table</b></code> <code>(creates the posts table if it doesn't already exist)</code></summary>
+ <summary><code>POST</code> <code><b>/create-table</b></code> <code>(creates the posts table if it doesn't already exist)</code></summary>
 
 ##### Request
 
@@ -112,7 +112,7 @@ Ensure you have the following installed on your machine:
 ##### Example cURL
 
 > ```bash
-> curl -X GET -H "Content-Type: application/json" http://localhost:3000/create-table
+> curl -X POST -H "Content-Type: application/json" http://localhost:3000/create-table
 > ```
 
 </details>

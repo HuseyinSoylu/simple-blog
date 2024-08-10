@@ -4,8 +4,8 @@ import pool from "../db";
 const router = Router();
 
 // Route to create the posts table
-// GET /create-table
-router.get("/", async (req: Request, res: Response) => {
+// POST /create-table
+router.post("/", async (req: Request, res: Response) => {
   const createTableQuery = `
     CREATE TABLE IF NOT EXISTS posts (
       id SERIAL PRIMARY KEY,

@@ -4,6 +4,7 @@ import cors from "cors";
 import postRoutes from "./routes/posts";
 import createTableRoute from "./routes/createTableRoute";
 import healthCheckRoute from "./routes/healthCheck";
+import seedRoute from "./routes/seedRoute";
 import logger from "./logger";
 
 const app = express();
@@ -20,6 +21,7 @@ app.use((req: Request, res: Response, next) => {
 app.use("/api/posts", postRoutes);
 app.use("/create-table", createTableRoute);
 app.use("/health", healthCheckRoute);
+app.use("/seed", seedRoute);
 
 app.listen(PORT, () => {
   logger.info(`Server is running on http://localhost:${PORT}`);

@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import pool from "../db";
+import logger from "../logger";
 
 const router = Router();
 
@@ -16,13 +17,14 @@ router.post("/", async (req: Request, res: Response) => {
   `;
   try {
     await pool.query(createTableQuery);
+    logger.info("Posts table created successfully.");
     res.status(200).send("Posts table created successfully.");
   } catch (err) {
     if (err instanceof Error) {
-      console.error(err.message);
+      logger.error("Posts table creation error:", err.message);
       res.status(500).send("Error creating posts table.");
     } else {
-      console.error("Unknown error", err);
+      logger.error("Unknown error", err);
       res.status(500).send("Unknown error creating posts table.");
     }
   }

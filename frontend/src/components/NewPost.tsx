@@ -1,40 +1,55 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const NewPost: React.FC = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:5000/api/posts", { title, content })
-      .then(() => {
-        navigate("/");
-      });
+    try {
+      await axios.post("http://localhost:5000/api/posts", { title, content });
+      navigate("/");
+    } catch (error) {
+      console.error("Error creating a new post:", error);
+    }
   };
 
   return (
-    <div>
-      <h1>Add New Post</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          required
-        />
-        <button type="submit">Add Post</button>
-      </form>
+    <div className="max-w-xl mx-auto mt-8">
+      <Card>
+        <CardHeader>
+          <CardTitle>Add New Post</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              className="w-full"
+            />
+            <Textarea
+              placeholder="Content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              required
+              className="w-full h-40"
+            />
+            <Button type="submit" variant="default" className="w-full">
+              Add Post
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 };

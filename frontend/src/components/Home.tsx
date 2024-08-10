@@ -19,9 +19,17 @@ const Home: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/posts").then((response) => {
-      setPosts(response.data);
-    });
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get<Post[]>(
+          `${import.meta.env.VITE_API_URL}/posts`
+        );
+        setPosts(response.data);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+    fetchPosts();
   }, []);
 
   return (

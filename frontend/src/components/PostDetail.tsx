@@ -21,16 +21,18 @@ const PostDetail: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/posts/${id}`).then((response) => {
-      setPost(response.data);
-      setTitle(response.data.title);
-      setContent(response.data.content);
-    });
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/posts/${id}`)
+      .then((response) => {
+        setPost(response.data);
+        setTitle(response.data.title);
+        setContent(response.data.content);
+      });
   }, [id]);
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/posts/${id}`);
       navigate("/");
     } catch (error) {
       console.error("Error deleting the post:", error);
@@ -43,7 +45,7 @@ const PostDetail: React.FC = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/posts/${id}`, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/posts/${id}`, {
         title,
         content,
       });

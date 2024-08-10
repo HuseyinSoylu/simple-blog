@@ -78,10 +78,10 @@ Ensure you have the following installed on your machine:
 
 ##### Responses
 
-> | http code | content-type | response                                              |
-> | --------- | ------------ | ----------------------------------------------------- |
-> | `200`     | `text/plain` | `{"status": "OK","time": "2024-08-10T19:24:12.973Z"}` |
-> | `500`     | `text/plain` | `"Database connection failed"`                        |
+> | http code | content-type       | response                                              |
+> | --------- | ------------------ | ----------------------------------------------------- |
+> | `200`     | `application/json` | `{"status": "OK","time": "2024-08-10T19:24:12.973Z"}` |
+> | `500`     | `text/plain`       | `"Database connection failed"`                        |
 
 ##### Example cURL
 
@@ -113,6 +113,32 @@ Ensure you have the following installed on your machine:
 
 > ```bash
 > curl -X POST -H "Content-Type: application/json" http://localhost:3000/create-table
+> ```
+
+</details>
+
+---
+
+#### Generate Sample Data
+
+<details>
+ <summary><code>POST</code> <code><b>/seed</b></code> <code>(creates the example 10 blog posts)</code></summary>
+
+##### Request
+
+> None
+
+##### Responses
+
+> | http code | content-type | response                               |
+> | --------- | ------------ | -------------------------------------- |
+> | `200`     | `text/plain` | `"Sample posts created successfully."` |
+> | `500`     | `text/plain` | `"Error seeding posts."`               |
+
+##### Example cURL
+
+> ```bash
+> curl -X POST -H "Content-Type: application/json" http://localhost:3000/seed
 > ```
 
 </details>

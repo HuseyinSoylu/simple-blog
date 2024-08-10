@@ -8,6 +8,7 @@ This is a simple blog application built with React/TypeScript and Node.js. It al
 - [Setup](#setup)
 - [Running the Application](#running-the-application)
 - [API Documentation](#api-documentation)
+  - [Health Check](#health-check)
   - [Create the Posts Table](#create-the-posts-table)
   - [Create a Post](#create-a-post)
   - [Get All Posts](#get-all-posts)
@@ -60,9 +61,37 @@ Ensure you have the following installed on your machine:
 
 ## Running the Application
 
-There is an `GET` endpoint called `/create-table`. After backend starts, you can use Postman to send request. This endpoint creates `blog` table for PostgreSQL. Then you can use front-end to create blog posts etc.
+- There is an `GET` endpoint called `/create-table`. After backend starts, you can use Postman to send request. This endpoint creates `blog` table for PostgreSQL. Then you can use front-end to create blog posts etc.
+
+- There is another `GET` endpoint called `/health`, which checks the server and PostgreSQL database status. It returns a status message confirming that both are operational, helping ensure system reliability and availability.
 
 ## API Documentation
+
+#### Health Check
+
+<details>
+ <summary><code>GET</code> <code><b>/health</b></code> <code>(checks system availability)</code></summary>
+
+##### Request
+
+> None
+
+##### Responses
+
+> | http code | content-type | response                                              |
+> | --------- | ------------ | ----------------------------------------------------- |
+> | `200`     | `text/plain` | `{"status": "OK","time": "2024-08-10T19:24:12.973Z"}` |
+> | `500`     | `text/plain` | `"Database connection failed"`                        |
+
+##### Example cURL
+
+> ```bash
+> curl -X GET -H "Content-Type: application/json" http://localhost:3000/health
+> ```
+
+</details>
+
+---
 
 #### Create the posts table
 

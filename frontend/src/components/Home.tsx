@@ -27,9 +27,6 @@ const Home: React.FC = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-4">Blog Posts</h1>
-      <Link to="/new" className="mb-4 inline-block">
-        <Button>Add New Post</Button>
-      </Link>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {posts.map((post) => (
           <Card key={post.id} className="border shadow-lg">

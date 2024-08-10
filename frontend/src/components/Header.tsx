@@ -8,7 +8,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto p-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold">
           <Link to="/" className="text-black hover:text-blue-500">
-            My Blog
+            Blog Page
           </Link>
         </h1>
         <nav>
